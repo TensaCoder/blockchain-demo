@@ -9,15 +9,15 @@ const Hash = () => {
 
     return (
         <>
-            <div className='container mx-auto'>
-                <h2 className='mt-4 width-setting'>Hash</h2>
+            <div className='container mx-auto width-setting'>
+                <h2 className='mt-4'>Hash</h2>
 
 
-                <form className='mt-4 container width-setting'>
+                <form className='mt-4 container'>
                     <div className="mb-3">
                         <div className='hash-block'>
                         <label htmlFor="privateKey" className="form-label">Data</label>
-                        <input type="text" className="form-control hashInput" id="privateKey" value={dataInput}/>
+                        <input type="text" className="form-control hashInput align-top" id="privateKey" value={dataInput}/>
 
                         </div>
                         {/* <div className="form-text">Never share your Private Key with anyone else.</div> */}
