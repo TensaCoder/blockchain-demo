@@ -1,18 +1,27 @@
-.hash-block{
-    /* width: 1000px; */
-    /* width: 70%; */
-    display: flexbox;
-}
 
 /* .hashDescription{
     display: inline-block;
 } */
 
+.label-css{
+    display: flex;
+    align-items: center;
+    width: 5rem;
+    font-weight: bold;
+}
+
 .hashInput{
-    display: inline;
-    height: 150px;
+    /* display: inline; */
+    height: 10rem;
 }
 
 .width-setting{
     width: 70%;
 }
+
+.block{
+    background-color: rgb(173, 207, 180);
+    border-radius: 1rem;
+    width: 35rem;
+}
+
