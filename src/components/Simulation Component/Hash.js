@@ -1,39 +1,21 @@
 import React, { useState } from 'react'
 import '../../CSS/hash.css'
-
-import { Sha256 } from '@aws-crypto/sha256-browser';
+import { sha3 } from 'hash-wasm';
 
 const Hash = () => {
-    // eslint-disable-next-line
-    const [dataInput, setDataInput] = useState("hello")
-    // eslint-disable-next-line
-    const [hashValue, setHashValue] = useState("")
 
-    // eslint-disable-next-line
-    let onChange = (event) => {
-        console.log();
+    const [dataInput, setDataInput] = useState("Change this text to see how hashing works!")
+
+    const [hashValue, setHashValue] = useState("2ca77b8257f2d54679fe47db871d9c821d83df75dda78d4f36f607476fb28d32")
+    
+      let onChange = async (event) => {
+        setDataInput(event.target.value)
+        setHashValue(await sha3(dataInput, 256));
+        console.log(hashValue);
+
     }
+
     
-    
-    const hash = new Sha256();
-    // hash.update('hello');
-    const res = async() =>{
-        // let result = await hash.digest();
-        let result = await hash.digest(hashValue);
-
-        const decoder = new TextDecoder("hex");
-        let decodedMessage = decoder.decode(result);
-        console.log(decodedMessage)
-        setHashValue(decodedMessage)
-
-        // console.log(result)
-        // setHashValue(result)
-    } 
-
-    res();
-    
-
-
     return (
         <>
             <div className='container mx-auto width-setting'>
@@ -44,7 +26,7 @@ const Hash = () => {
                     <div className="mb-3">
                         <div className='hash-block'>
                             <label htmlFor="privateKey" className="form-label">Data</label>
-                            <input type="text" className="form-control hashInput align-top" id="privateKey" value={dataInput} />
+                            <input type="text" className="form-control hashInput align-top" id="privateKey" value={dataInput} onChange={onChange} />
 
                         </div>
                         {/* <div className="form-text">Never share your Private Key with anyone else.</div> */}
@@ -53,7 +35,7 @@ const Hash = () => {
                     <div className="mb-3 mt-4">
                         <div className='hash-block'>
                             <label htmlFor="publicKey" className="form-label">Hash Value</label>
-                            <input type="text" className="form-control" id="publicKey" value={hashValue} />
+                            <input type="text" className="form-control" id="publicKey" value={hashValue} disabled='true'/>
                         </div>
 
                         {/* <div className="form-text">Public Key will be available to everyone.</div> */}
